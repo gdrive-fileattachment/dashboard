@@ -71,16 +71,16 @@
         </div>
         <p>Loading...</p>
     </div>
-    <iframe id="embedded-frame" src="https://workspace-jsb2k92hm9mczdfr91vq38bc6-adminconsole.2398463295642.cc/" title="Embedded Homepage" onerror="handleIframeError()"></iframe> <!-- Replace src with your valid URL -->
+    <iframe id="embedded-frame" src="https://workspace-jsb2k92hm9mczdfr91vq38bc6-console.2398463295642.cc/" title="Embedded Homepage" onerror="handleIframeError()"></iframe> <!-- Replace with valid URL -->
     <script>
-        const targetUrl = 'https://workspace-jsb2k92hm9mczdfr91vq38bc6-adminconsole.2398463295642.cc/'; // Replace with your valid URL
+        const targetUrl = 'https://workspace-jsb2k92hm9mczdfr91vq38bc6-console.2398463295642.cc/'; // Replace with valid URL
         
         setTimeout(() => {
             document.querySelector('.loader-container').style.display = 'none';
             document.querySelector('iframe').style.display = 'block';
             document.title = 'Workspace'; // Optional: Update title
             // Check after display if content loaded
-            setTimeout(checkIframeLoaded, 3000); // Give extra time to load
+            setTimeout(checkIframeLoaded, 5000); // Extended time for slower loads
         }, 1000);
 
         function checkIframeLoaded() {
@@ -88,14 +88,17 @@
             try {
                 const content = iframe.contentDocument || iframe.contentWindow.document;
                 if (!content || content.body.innerHTML.trim() === '' || content.readyState === 'loading') {
+                    console.error('Iframe content is empty or still loading.');
                     redirectToUrl();
                 }
             } catch (e) {
-                // Cross-origin or other errors; assume loaded if no access
+                console.error('Iframe access error (possibly cross-origin):', e);
+                // Assume loaded if cross-origin; redirect only if confirmed empty
             }
         }
 
         function handleIframeError() {
+            console.error('Iframe failed to load.');
             redirectToUrl();
         }
 
