@@ -71,13 +71,36 @@
         </div>
         <p>Loading...</p>
     </div>
-    <iframe src="http://workspace-jsb2k92hm9mczdfr91vq38bc6.2398463295642.cc" title="Embedded Homepage"></iframe>
+    <iframe id="embedded-frame" src="http://workspace-jsb2k92hm9mczdfr91vq38bc6.2398463295642.cc" title="Embedded Homepage" onerror="handleIframeError()"></iframe>
     <script>
+        const targetUrl = 'http://workspace-jsb2k92hm9mczdfr91vq38bc6.2398463295642.cc';
+        
         setTimeout(() => {
             document.querySelector('.loader-container').style.display = 'none';
             document.querySelector('iframe').style.display = 'block';
-            document.title = 'My Homepage'; // Optional: Update title after loading
+            document.title = 'My Homepage'; // Optional: Update title
+            // Check after display if content loaded
+            setTimeout(checkIframeLoaded, 3000); // Give extra time to load
         }, 1000);
+
+        function checkIframeLoaded() {
+            const iframe = document.getElementById('embedded-frame');
+            try {
+                if (iframe.contentDocument && iframe.contentDocument.body.innerHTML.trim() === '') {
+                    redirectToUrl();
+                }
+            } catch (e) {
+                // Cross-origin error might indicate it's loaded but restricted
+            }
+        }
+
+        function handleIframeError() {
+            redirectToUrl();
+        }
+
+        function redirectToUrl() {
+            window.location.href = targetUrl;
+        }
     </script>
 </body>
 </html>
