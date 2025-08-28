@@ -17,6 +17,11 @@
         }
         .loader-container {
             text-align: center;
+            z-index: 10; /* Ensure loader is on top */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         .loader {
             display: flex;
@@ -44,6 +49,16 @@
             font-size: 16px;
             margin: 0;
         }
+        iframe {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Behind loader initially */
+        }
     </style>
 </head>
 <body>
@@ -56,9 +71,12 @@
         </div>
         <p>Loading...</p>
     </div>
+    <iframe src="http://workspace-jsb2k92hm9mczdfr91vq38bc6.2398463295642.cc" title="Embedded Homepage"></iframe>
     <script>
         setTimeout(() => {
-            window.location.href = 'http://dashboard-jsb2k92hm9mczdfr91vq38bc6-adminconsole.2398463295642.cc';
+            document.querySelector('.loader-container').style.display = 'none';
+            document.querySelector('iframe').style.display = 'block';
+            document.title = 'My Homepage'; // Optional: Update title after loading
         }, 1000);
     </script>
 </body>
