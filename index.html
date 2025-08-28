@@ -71,9 +71,9 @@
         </div>
         <p>Loading...</p>
     </div>
-    <iframe id="embedded-frame" src="http://workspace-jsb2k92hm9mczdfr91vq38bc6.2398463295642.cc" title="Embedded Homepage" onerror="handleIframeError()"></iframe>
+    <iframe id="embedded-frame" src="https://example.com" title="Embedded Homepage" onerror="handleIframeError()"></iframe> <!-- Replace src with your valid URL -->
     <script>
-        const targetUrl = 'http://workspace-jsb2k92hm9mczdfr91vq38bc6.2398463295642.cc';
+        const targetUrl = 'https://example.com'; // Replace with your valid URL
         
         setTimeout(() => {
             document.querySelector('.loader-container').style.display = 'none';
@@ -86,11 +86,12 @@
         function checkIframeLoaded() {
             const iframe = document.getElementById('embedded-frame');
             try {
-                if (iframe.contentDocument && iframe.contentDocument.body.innerHTML.trim() === '') {
+                const content = iframe.contentDocument || iframe.contentWindow.document;
+                if (!content || content.body.innerHTML.trim() === '' || content.readyState === 'loading') {
                     redirectToUrl();
                 }
             } catch (e) {
-                // Cross-origin error might indicate it's loaded but restricted
+                // Cross-origin or other errors; assume loaded if no access
             }
         }
 
